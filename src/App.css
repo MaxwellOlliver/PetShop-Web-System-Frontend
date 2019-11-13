@@ -1,22 +1,239 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
+html, body, #root {
+  font-family:'Poppins', Arial, Helvetica, sans-serif;
+  background: #EFB62E;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+label, input, button {
+  font-size: 16px
+}
+
+.container {
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+
+nav {
+  height: 80px;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+nav img {
+  width: 60px;
+  height: 60px;
+  margin-left: 8rem;
+}
+
+nav div#menu {
+  margin-right: 8rem;
+}
+
+
+@media(max-width: 600px){
+  nav img {
+    margin-left: 3rem;
+  }
+  nav div#menu {
+    margin-right: 3rem;
+  }
+}
+nav button {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  padding: 5px 15px;
+  margin: 0 10px;
+  border-radius: 20px;
+  cursor: pointer;
   color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+nav button#agenda {
+  background: #EDA132;
+  transition: .3s;
+}
+nav button#agenda:hover {
+  background: rgb(209, 144, 45);
+}
+
+nav button#home {
+  font-weight: 500;
+  color:#000000;
+  background: none;
+}
+
+.welcome-msg{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 80px;
+  width: 100%;
+  height: 690px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.767) , transparent), url("./assets/Dog-being-groomed-at-Vet.png") no-repeat;
+  background-size: cover;
+  padding-left: 8rem;
+}
+
+@media(max-width: 960px){
+  .welcome-msg{
+    padding-left: 1rem;
+  }
+  .welcome-msg span#welcome{
+    margin: 190px 0 20px 0 !important;
+  }
+}
+@media(max-width: 600px){
+  .welcome-msg{
+    padding-left: 1rem;
+  }
+  .welcome-msg span#welcome{
+    margin: 190px 0 50px 0 !important;
+  }
+}
+
+.welcome-msg span#welcome{
+  margin: 190px 0 90px 0;
+  font-size: 40px;
+  font-weight: 600;
+}
+.welcome-msg button{
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  height: 52px;
+  padding: 5px 20px;
+  margin: 0 15px 0 0;
+  border-radius: 26px;
+  cursor: pointer;
+  color: white;
+  transition: .3s;
+}
+
+.welcome-msg button#send-email{
+  background: transparent;
+  border: 1px solid #FFFFFF;
+}
+
+.welcome-msg button#send-email:hover{
+  color: rgb(48, 47, 47);
+  background: rgb(228, 228, 228);
+  border: 1px solid #FFFFFF;
+}
+
+.welcome-msg button#agenda{
+  background: #EDA132;
+}
+
+.welcome-msg button#agenda:hover {
+  background: rgb(179, 123, 39);
+}
+
+
+.content {
+  width: 100%;
+  background: #EFB62E;
+  font-size: 16px;
+  border-radius: 4px;
+  text-align: center;
+  color: black;
+  padding: 0 15rem;
+}
+
+.content h1{
+  margin: 6rem 0 2rem 0;
+}
+
+.content > span{
+  font-size: 31px;
+}
+
+div#servicos {
+  display: flex;
+  flex-direction: row;
+  margin-top: 6rem;
+  margin-bottom: 6rem;
+  width: 100%;
+  
+  justify-content: space-between;
+}
+
+@media(max-width: 1160px){
+  div#servicos{
+    flex-direction: column;
+    padding: 0;
+  }
+  div#servicos div{
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+/* @media(max-width: 950px){
+  div#servicos{
+    flex-direction: column;
+    padding: 0 13rem 0 13rem;
+  }
+  div#servicos div{
+    margin-bottom: 20px !important;
+  }
+} */
+
+@media(max-width: 800px){
+  .content {
+    padding: 10rem;
+  }
+  div#servicos{
+    flex-direction: column;
+    padding: 0;
+  }
+  div#servicos div{
+    width: 350px !important;
+    margin-bottom: 20px !important;
+  }
+}
+@media(max-width: 650px){
+  .content {
+    padding: 4rem;
+  }
+  div#servicos{
+    flex-direction: column;
+    padding: 0;
+  }
+  div#servicos div{
+    width: 350px !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+div#servicos div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 350px;
+  height: 250px;
+  background: white;
+  box-shadow: 0px 6px 12px #0000000F;
+  border-radius: 20px;
+  padding: 0 20px;
+  margin-left: 20px;
+}
+
+div#servicos div h3, div#servicos div span {
+  margin-top: 12px
 }
