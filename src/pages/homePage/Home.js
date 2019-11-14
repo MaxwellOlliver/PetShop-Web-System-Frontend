@@ -3,7 +3,8 @@ import '../../App.css';
 
 import Logo from '../../assets/logo.svg';
 import tosaLogo from '../../assets/servico.svg';
-import agendaLogo from '../../assets/agenda.svg'
+import agendaLogo from '../../assets/agenda.svg';
+import equipeLogo from '../../assets/equipe.svg';
 
 export default function Home(){
     return (
@@ -11,7 +12,7 @@ export default function Home(){
             <nav>
                 <img src={Logo} alt="PetsCão"/>
                 <div id="menu">
-                    <button id="home" disabled>home</button>
+                    <button id="home">home</button>
                     <button id="agenda" onClick="">agendamento</button>
                 </div>
             </nav>
@@ -22,7 +23,7 @@ export default function Home(){
                 <br/>
                 <div id="buttons">
                     <button id="agenda">agendamento</button>
-                    <button id="send-email">enviar email</button>                    
+                    <a href="mailto:webmaster@example.com"><button id="send-email">enviar email</button></a>                    
                 </div>
             </div>
             <div className="content">
@@ -40,6 +41,7 @@ export default function Home(){
                         <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</span>
                     </div>
                     <div id="equipe">
+                        <img src={equipeLogo} alt="Equipe"></img>
                         <h3>Equipe</h3>
                         <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</span>
                     </div>

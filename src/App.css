@@ -9,7 +9,7 @@
 
 html, body, #root {
   font-family:'Poppins', Arial, Helvetica, sans-serif;
-  background: #EFB62E;
+  background: #EDA132;
 }
 
 label, input, button {
@@ -66,18 +66,23 @@ nav button {
   color: white;
 }
 
-nav button#agenda {
+nav button#home {
   background: #EDA132;
   transition: .3s;
-}
-nav button#agenda:hover {
-  background: rgb(209, 144, 45);
+  cursor: default;
 }
 
-nav button#home {
+nav button#agenda {
   font-weight: 500;
   color:#000000;
   background: none;
+
+  transition: .3s;
+}
+nav button#agenda:hover {
+  font-weight: 500;
+  color:#FFFFFF;
+  background: rgb(167, 167, 167);
 }
 
 .welcome-msg{
@@ -147,7 +152,7 @@ nav button#home {
 
 .content {
   width: 100%;
-  background: #EFB62E;
+  background: #EDA132;
   font-size: 16px;
   border-radius: 4px;
   text-align: center;
