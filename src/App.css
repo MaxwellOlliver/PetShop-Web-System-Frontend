@@ -72,14 +72,14 @@ nav button#home {
   cursor: default;
 }
 
-nav button#agenda {
+nav button#entrar {
   font-weight: 500;
   color:#000000;
   background: none;
 
   transition: .3s;
 }
-nav button#agenda:hover {
+nav button#entrar:hover {
   font-weight: 500;
   color:#FFFFFF;
   background: rgb(167, 167, 167);
@@ -141,11 +141,11 @@ nav button#agenda:hover {
   border: 1px solid #FFFFFF;
 }
 
-.welcome-msg button#agenda{
+.welcome-msg button#entrar{
   background: #EDA132;
 }
 
-.welcome-msg button#agenda:hover {
+.welcome-msg button#entrar:hover {
   background: rgb(179, 123, 39);
 }
 

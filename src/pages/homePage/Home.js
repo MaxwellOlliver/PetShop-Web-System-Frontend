@@ -6,14 +6,20 @@ import tosaLogo from '../../assets/servico.svg';
 import agendaLogo from '../../assets/agenda.svg';
 import equipeLogo from '../../assets/equipe.svg';
 
-export default function Home(){
+export default function Home({ history }){
+    function goToLogin(){
+        history.push("/login");
+    }
+    function goToNew(){
+        history.push("/new");
+    }
     return (
         <div className="container">
             <nav>
                 <img src={Logo} alt="PetsCão"/>
                 <div id="menu">
-                    <button id="home">home</button>
-                    <button id="agenda" onClick="">agendamento</button>
+                    <button id="home" disabled>home</button>
+                    <button id="entrar" onClick={goToLogin}>fazer login</button>
                 </div>
             </nav>
             <div className="welcome-msg">
@@ -22,8 +28,8 @@ export default function Home(){
                 </span>
                 <br/>
                 <div id="buttons">
-                    <button id="agenda">agendamento</button>
-                    <a href="mailto:webmaster@example.com"><button id="send-email">enviar email</button></a>                    
+                    <button id="entrar" onClick={goToNew}>Criar nova conta</button>
+                    <a href="mailto:petscaocompany@gmail.com"><button id="send-email">enviar email</button></a>                    
                 </div>
             </div>
             <div className="content">
