@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function Animal(){
-    return <div />
+    return <h1>ANimalList</h1>
 }

@@ -16,6 +16,10 @@ label, input, button {
   font-size: 16px
 }
 
+button {
+  cursor: pointer;
+}
+
 .container {
   width: 100%;
   height: auto;
@@ -39,7 +43,7 @@ nav {
 }
 
 nav img {
-  width: 60px;
+  width: 200px;
   height: 60px;
   margin-left: 8rem;
 }
@@ -51,7 +55,8 @@ nav div#menu {
 
 @media(max-width: 600px){
   nav img {
-    margin-left: 3rem;
+    width: 150px;
+    margin-left: 1rem;
   }
   nav div#menu {
     margin-right: 3rem;
@@ -92,7 +97,7 @@ nav button#entrar:hover {
   margin-top: 80px;
   width: 100%;
   height: 690px;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.767) , transparent), url("./assets/Dog-being-groomed-at-Vet.png") no-repeat;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.767) , transparent), url("./assets/Dog-being-groomed-at-Vet.jpg") no-repeat;
   background-size: cover;
   padding-left: 8rem;
 }
@@ -200,6 +205,10 @@ div#servicos {
 } */
 
 @media(max-width: 800px){
+  nav img{
+    width: 180px;
+    margin-left: 1rem
+  }
   .content {
     padding: 10rem;
   }

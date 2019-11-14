@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 
-import Logo from '../../assets/logo.svg';
+import Logo from '../../assets/logo-horizontal.svg';
 import tosaLogo from '../../assets/servico.svg';
 import agendaLogo from '../../assets/agenda.svg';
 import equipeLogo from '../../assets/equipe.svg';
@@ -16,7 +16,7 @@ export default function Home({ history }){
     return (
         <div className="container">
             <nav>
-                <img src={Logo} alt="PetsCão"/>
+                <img src={Logo} alt="PetsCão" id="homeLogo"/>
                 <div id="menu">
                     <button id="home" disabled>home</button>
                     <button id="entrar" onClick={goToLogin}>fazer login</button>
