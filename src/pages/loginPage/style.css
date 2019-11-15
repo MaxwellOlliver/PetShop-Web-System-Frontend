@@ -66,14 +66,14 @@ nav button#homeLogin:hover {
 
 div#loginBg{
     margin-top: 80px;
-    background: url("../../assets/login.jpg") no-repeat;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.658) , transparent), url("../../assets/login.jpg") no-repeat;
     background-size: cover;
     width: 100%;
-    height: 350px;
+    height: 250px;
 }
 div#newBg{
     margin-top: 80px;
-    background: url("../../assets/user.jpg") no-repeat;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.658) , transparent), url("../../assets/user.jpg") no-repeat;
     background-size: cover;
     width: 100%;
     height: 250px;
@@ -198,6 +198,9 @@ div#newBg{
 .content-login form span, .content-login span, .content-new form span, .content-new span{
     color: white;
 }
+.content-login span, .content-new span{
+    margin-top: 10px;
+}
 
 
 .content-login form span#toNew{
@@ -211,20 +214,9 @@ div#newBg{
     color: rgb(99, 165, 231); 
 }
 
+
+
 .err-msg{
-    top: 20px;
-    margin-top: 10px;
-    background: rgb(253, 112, 112);
-    color: white;
-    height: 50px;
-    text-align: center;
-    width: 450px;
-    padding: 10px;
-    border-radius: 15px;
-}
-
-.content-new div#erro{
-    visibility: hidden;
     width: 550px;
     height: 50px;
     top: 20px;
@@ -237,9 +229,18 @@ div#newBg{
     padding: 10px;
     border-radius: 15px;
 }
-
-.content-new .err-msg{
-    visibility: visible !important;
+.access-msg{
+    width: 550px;
+    height: 50px;
+    top: 20px;
+    margin-top: 10px;
+    background: rgb(112, 211, 128);
+    color: white;
+    height: 50px;
+    text-align: center;
+    width: 550px;
+    padding: 10px;
+    border-radius: 15px;
 }
 
 div#titulo {
@@ -256,3 +257,49 @@ div#titulo {
         width: 60px;
         height: 60px;
     }
+
+div#sub-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+}
+
+div#sub-btn button{
+    width: 200px;
+    transition: .3s;
+}
+
+button#fim:disabled{
+    background: #a7a7a7;
+    cursor: default;
+}
+button#fim:hover:disabled{
+    background: #a7a7a7;
+}
+button#fim{
+    background: #707070;
+}
+button#fim:hover{
+    background: #4d4d4d;
+}
+
+button#novo {
+    background: #ED8F32;
+}
+button#novo:hover {
+    background: rgb(189, 115, 41);
+}
+
+.content-new span span {
+    background: #707070;
+}
+
+.content-new span span#petSpan{
+    background: #ED8F32;
+}
+
+.bg-azul-ciano{
+    background: #4CBED3 !important;
+}

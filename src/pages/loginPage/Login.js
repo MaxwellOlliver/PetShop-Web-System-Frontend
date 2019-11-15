@@ -30,7 +30,7 @@ export default function Login({ history }){
         history.push("/");
     }
     function goToNew(){
-        history.push("/new");
+        history.push("/new-user");
     }
 
     return (

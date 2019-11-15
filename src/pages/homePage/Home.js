@@ -11,10 +11,10 @@ export default function Home({ history }){
         history.push("/login");
     }
     function goToNew(){
-        history.push("/new");
+        history.push("/new-user");
     }
     return (
-        <div className="container">
+        <div className="container bg-yellow">
             <nav>
                 <img src={Logo} alt="PetsCão" id="homeLogo"/>
                 <div id="menu">

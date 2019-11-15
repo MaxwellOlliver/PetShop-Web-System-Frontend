@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+.bg-yellow{
+  background: #EDA132 !important;
+}
+
 html, body, #root {
   font-family:'Poppins', Arial, Helvetica, sans-serif;
   background: #EDA132;

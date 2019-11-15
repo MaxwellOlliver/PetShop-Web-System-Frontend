@@ -14,10 +14,10 @@ export default function New({ history }){
     async function handleSubmit(event){ 
         event.preventDefault();
         const response = await api.post('/user', { nome, email, cpf, telefone });
-        console.log(response)
+        
         if(!response.data.erro){
             localStorage.setItem("user", response.data._id);
-            history.push("/newanimal");
+            history.push("/new-animal");
         }else{
             if(nome === "" || cpf === "" || email === "" || telefone === ""){
                 response.data.erro = "Por favor, preencha todos os campos abaixo."
@@ -37,7 +37,7 @@ export default function New({ history }){
                 <img src={Logo} alt="PetsCão" id="homeLogo"/>
                 <div id="menu">
                     <button id="homeLogin" onClick={goToHome}>home</button>
-                    <button id="entrarLogin" disabled>fazer login</button>
+                    <button id="entrarLogin" disabled>Criar conta</button>
                 </div>
             </nav>
             <div id="newBg"></div>
