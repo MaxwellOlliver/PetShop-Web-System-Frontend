@@ -7,6 +7,7 @@ import Menu from './pages/menuPage/Menu';
 import Animal from './pages/animalListPage/Animal';
 import newAnimal from './pages/newAnimal/newAnimal'
 import Schedule from './pages/schedulingPage/Schedule';
+import ScheduleList from './pages/scheduleList/ScheduleList';
 import New from './pages/newPage/New';
 
 export default function Routes(){
@@ -19,7 +20,8 @@ export default function Routes(){
                 <Route path="/new-user" component={New}/>
                 <Route path="/new-animal" component={newAnimal}/>
                 <Route path="/animal-list" component={Animal}/>
-                <Route path="/scheduling" component={Schedule}/>
+                <Route path="/new-schedule" component={Schedule}/>
+                <Route path="/schedule-list" component={ScheduleList}/>
             </Switch>
         </BrowserRouter>
     )

@@ -7,11 +7,21 @@ import agendaLogo from '../../assets/agenda.svg';
 import equipeLogo from '../../assets/equipe.svg';
 
 export default function Home({ history }){
+    const user_id = localStorage.getItem("user")
+
+    function logout(){
+        localStorage.removeItem("user")
+        window.location.reload()
+    }
+
     function goToLogin(){
         history.push("/login");
     }
     function goToNew(){
         history.push("/new-user");
+    }
+    function goToMenu(){
+        history.push("/menu");
     }
     return (
         <div className="container bg-yellow">
@@ -19,7 +29,7 @@ export default function Home({ history }){
                 <img src={Logo} alt="PetsCão" id="homeLogo"/>
                 <div id="menu">
                     <button id="home" disabled>home</button>
-                    <button id="entrar" onClick={goToLogin}>fazer login</button>
+                    <button id="entrar" onClick={user_id? logout:goToLogin}>{user_id ? "sair": "fazer login"}</button>
                 </div>
             </nav>
             <div className="welcome-msg">
@@ -28,7 +38,7 @@ export default function Home({ history }){
                 </span>
                 <br/>
                 <div id="buttons">
-                    <button id="entrar" onClick={goToNew}>Criar nova conta</button>
+                    <button id="entrar" onClick={user_id?goToMenu:goToNew}>{user_id?"Ir ao menu":"Criar uma conta"}</button>
                     <a href="mailto:petscaocompany@gmail.com"><button id="send-email">enviar email</button></a>                    
                 </div>
             </div>

@@ -13,6 +13,7 @@ nav {
 
 html, body, #root {
     font-family:'Poppins', Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
     background: #3485D6 !important;
 }
   
@@ -68,6 +69,7 @@ div#loginBg{
     margin-top: 80px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.658) , transparent), url("../../assets/login.jpg") no-repeat;
     background-size: cover;
+    background-position: center;
     width: 100%;
     height: 250px;
 }
@@ -117,9 +119,12 @@ div#newBg{
     padding: 30px;
 }
 
+
+
 .content-new div#menuButtons button{
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 600px;
     height: 120px;
     margin-bottom: 20px;
@@ -129,6 +134,21 @@ div#newBg{
     font-weight: 600;
 
     transition: .3s;
+}
+
+@media(max-width: 700px){
+    .content-new div#menuButtons button{
+        width: 420px;
+    }
+    .content-new div#menuButtons {
+        width: 480px;
+    }
+}
+
+.content-new div#menuButtons button img{
+    height: 70px;
+    width: 70px;
+    margin-right: 20px;
 }
 
 .content-new div#menuButtons button#seusAnimais{
@@ -214,6 +234,7 @@ div#newBg{
     text-align: center;
     background: #3485D6;
     color: white;
+    font-weight: 600;
 
     transition: .3s;
 }
@@ -225,6 +246,7 @@ div#newBg{
     text-align: center;
     background: #3485D6;
     color: white;
+    font-weight: 600;
 
     transition: .3s;
 }
@@ -350,3 +372,37 @@ button#novo:hover {
 .bg-azul-ciano{
     background: #4CBED3 !important;
 }
+
+.content-new form select {
+    width: 100%;
+    height: 45px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 17px;
+    padding: 0 20px;
+}
+
+.content-new form button#agendar{
+    width: 100%;
+    background-color: #707070;
+}
+.content-new form button#agendar:hover{
+    background-color: #555555;
+}
+
+div#datetimeBubttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div#datetimeButtons input, div#datetimeButtons  select{
+    padding: auto;
+    width: 215px;
+}
+
+div#datetimeButtons input:first-child{
+    margin-right: 20px;
+}
+
+::-webkit-inner-spin-button{display: none}
