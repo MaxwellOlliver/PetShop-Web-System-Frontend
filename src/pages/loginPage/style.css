@@ -109,6 +109,51 @@ div#newBg{
     padding: 0 15rem;
 }
 
+
+.content-new div#menuButtons {
+    flex-direction: column;
+    width: 650px;
+    height: auto;
+    padding: 30px;
+}
+
+.content-new div#menuButtons button{
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    height: 120px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    color: white;
+    font-size: 35px;
+    font-weight: 600;
+
+    transition: .3s;
+}
+
+.content-new div#menuButtons button#seusAnimais{
+    background-color: #EBB43C;
+}
+.content-new div#menuButtons button#seusAnimais:hover{
+    background-color: rgb(206, 157, 52);
+}
+.content-new div#menuButtons button#agendarServico{
+    background-color: #E8A23F;
+}
+.content-new div#menuButtons button#agendarServico:hover{
+    background-color: rgb(196, 136, 53);
+}
+.content-new div#menuButtons button#ver{
+    background-color: #E69240;
+}
+.content-new div#menuButtons button#ver:hover{
+    background-color: rgb(187, 119, 52);
+}
+
+.content-new div#menuButtons span {
+    font-size: 20px;
+}
+
 .content-login form {
     margin-top: 1.5rem;
     padding: 35px 50px;
@@ -293,6 +338,8 @@ button#novo:hover {
 }
 
 .content-new span span {
+    border-radius: 20px;
+    padding: 3px 10px;
     background: #707070;
 }
 

@@ -19,7 +19,7 @@ export default function Animal({ history }){
     
     function endAnimal(event){
         event.preventDefault();
-        history.push("/animal-list")
+        history.push("/menu")
     }
     async function handleSubmit(event){
         event.preventDefault();
