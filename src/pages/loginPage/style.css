@@ -406,3 +406,149 @@ div#datetimeButtons input:first-child{
 }
 
 ::-webkit-inner-spin-button{display: none}
+
+div#headerAnimal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 120px;
+    background-color: #E8A23F;
+    margin-top: 80px;
+}
+
+div#headerAnimal img{
+    margin-right: 20px;
+}
+
+div#footerAnimal {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    background-color: #3485D6;
+    margin-top: 80px;
+}
+
+div#footerAnimal button{
+    margin-right: 20px;
+}
+
+div#footerAnimal button#apagar, div#footerAnimal button#editar, div#footerAnimal button#voltar {
+    display: flex;
+    align-items: center;
+    color: white;
+    height: 50px;
+    padding: 10px 30px;
+    border-radius: 10px;
+
+    transition: .3s;
+
+}
+
+div#footerAnimal button#apagar{
+    background-color: #ED8F32;   
+}
+
+div#footerAnimal button#apagar:hover{
+    background-color: rgb(199, 120, 42);   
+}
+div#footerAnimal button#apagar:disabled{
+    background-color: rgb(250, 174, 98); 
+    cursor: not-allowed;  
+}
+
+div#footerAnimal button#editar{
+    background-color: #EDA132;
+}
+div#footerAnimal button#editar:hover{
+    background-color: rgb(201, 138, 43);
+}
+
+div#footerAnimal button#editar:disabled{
+    background-color: rgb(250, 174, 98); 
+    cursor: not-allowed;  
+}
+
+div#footerAnimal button#voltar{
+    background-color: #EBB43C;
+}
+div#footerAnimal button#voltar:hover{
+    background-color: rgb(197, 151, 51);
+}
+
+div#footerAnimal button img {
+    height: 22px;
+    width: 22px;
+    margin-right: 10px;
+}
+
+table{
+    width: 100%;
+    height: 100%;
+    border-spacing: 0;
+}
+
+table thead tr{
+    min-width: 200px;
+    height: 60px;
+}
+
+table thead tr th {
+    text-align: left;
+}
+table tbody tr{
+    background-color: white;
+    height: 60px;
+}
+
+table tbody tr td{
+    text-align: left;
+    font-weight: 500;
+    color: black; 
+}
+
+table tbody tr:nth-child(2n){
+    background-color: rgb(235, 235, 235);
+}
+
+input[type = "checkbox"]{
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.checkbox {
+    display: none;
+}
+
+.checkbox + label:before{
+    content: '\2714';
+    font-size: 12px;
+    display: inline-block;
+    color: transparent;
+    width: 18px;
+    height: 18px;
+    background-color: none;
+    border: 1px solid rgb(141, 141, 141);
+
+    transition: .2s;
+}
+
+.checkbox:checked + label:before {
+    color: rgb(255, 255, 255);
+    background-color: rgb(97, 173, 248);
+    border-color: white;
+    height: 18px;
+    width: 18px;
+    border-radius: 10px;
+}
+
+.just-right {
+    text-align: center;
+}

@@ -11,6 +11,8 @@ export default function Schedule({history}){
 	const [ data, setDate ] = useState("");
 	const [ hora, setHour ] = useState("");
 	const [ servico, setService ] = useState();
+	const [ horaValidation, setHoraValidation] = useState([]);
+	const horarios = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"]
 
 	function isLogged(){
 		const _id = localStorage.getItem("user");
@@ -20,8 +22,19 @@ export default function Schedule({history}){
 	}
 
 	useEffect(()=>{
+		async function getHour(){
+			const hour = await api.get("/get-hours", {headers:{data}});
+			
+			if(hour.data){
+				setHoraValidation(hour.data)
+			}
+		}
+		getHour()
+	}, [data])
+
+	useEffect(()=>{
 		async function loadAnimals(){
-			const user_id = localStorage.getItem("user")
+			const user_id = localStorage.getItem("user");
 			const response = await api.get("/animal-list", {headers: {user_id}});
 
 			setAnimalList(response.data)
@@ -95,7 +108,9 @@ export default function Schedule({history}){
 								onChange={event => setHour(event.target.value)}
 							>
 								<option value="DEFAULT" disabled>hh : mm</option>
-								<option value="13:30">13:30</option>
+								{horaValidation[0]?horarios.map(hora => { return horaValidation.map((value, index) => { 
+									return hora !== value.hora ? <option key={index} value={hora}>{hora}</option>:"teste"
+								}) }):horarios.map((hora, index)=>{return <option key={index} value={hora}>{hora}</option>})}
 							</select>
 						</div>
 						<select 
@@ -106,7 +121,8 @@ export default function Schedule({history}){
 						>
 							<option value="DEFAULT" disabled>Selecione o serviço</option>
 							<option value="vacina">Vacina</option>
-							<option value="banho e tosa">Banho e tosa</option>
+							<option value="banho">Banho</option>
+							<option value="tosa">Tosa</option>
 						</select>
 						<button 
 							type="submit" 
