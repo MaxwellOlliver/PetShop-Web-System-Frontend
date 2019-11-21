@@ -181,7 +181,7 @@ div#newBg{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 450px;
+    width: 550px;
     background: #EFB62E;
     box-shadow: 0px 6px 12px #0000000F;
     border-radius: 20px;
@@ -201,7 +201,7 @@ div#newBg{
 }
 
 .content-login form input{
-    width: 320px;
+    width: 420px;
     height: 45px;
     border-radius: 12px;
     padding: 0 20px;
@@ -228,7 +228,7 @@ div#newBg{
 }
 
 .content-login form button{
-    width: 320px;
+    width: 420px;
     height: 45px;
     border-radius: 12px;
     text-align: center;
@@ -256,7 +256,7 @@ div#newBg{
 }
 
 .content-login form hr {
-    width: 380px;
+    width: 480px;
     height: 2px;
     margin: 30px 0;
     background: #3485D6;
@@ -292,7 +292,6 @@ div#newBg{
     color: white;
     height: 50px;
     text-align: center;
-    width: 550px;
     padding: 10px;
     border-radius: 15px;
 }
@@ -305,7 +304,6 @@ div#newBg{
     color: white;
     height: 50px;
     text-align: center;
-    width: 550px;
     padding: 10px;
     border-radius: 15px;
 }
@@ -353,25 +351,22 @@ button#fim:hover{
 }
 
 button#novo {
-    background: #ED8F32;
+    background: #4CBED3;
 }
 button#novo:hover {
-    background: rgb(189, 115, 41);
+    background: rgb(62, 157, 173);
 }
 
 .content-new span span {
     border-radius: 20px;
-    padding: 3px 10px;
+    padding: 0px 7px;
     background: #707070;
 }
 
 .content-new span span#petSpan{
-    background: #ED8F32;
+    background: #4CBED3;
 }
 
-.bg-azul-ciano{
-    background: #4CBED3 !important;
-}
 
 .content-new form select {
     width: 100%;
@@ -551,4 +546,104 @@ input[type = "checkbox"]{
 
 .just-right {
     text-align: center;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.noAnimal-modal{
+    position: fixed;
+    top: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 150px;
+    border-radius: 15px;
+}
+
+.errNoSelect{
+    width: 450px;
+    height: 50px;
+    position: absolute;
+    bottom: 130px;
+    margin-top: 10px;
+    background: #E8A23F;
+    color: white;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.modal-container{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, .5);
+    z-index: 2000;
+}
+
+.modal-container.mostrar{
+    display: flex;
+}
+
+.modal{
+    padding: 35px 50px;
+    width: 550px;
+    background: #EFB62E;
+    box-shadow: 0px 6px 12px #0000000F;
+    border-radius: 20px;
+
+    animation: modal .3s;
+}
+
+@keyframes modal{
+    from{
+        opacity: 0;
+        transform: translate3d(0, 100px, 0);
+    }
+    to{
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.modal form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal form button{
+    width: 410px;
+    height: 45px;
+    border-radius: 12px;
+    text-align: center;
+    background: #3485D6;
+    color: white;
+    font-weight: 600;
+
+    transition: .3s;
+}
+
+.modal form button:hover{
+    background: rgb(43, 112, 182);
+}
+
+.modal form input{
+    width: 410px;
+    height: 45px;
+    border-radius: 12px;
+    padding: 0 20px;
+    margin-bottom: 25px;
 }

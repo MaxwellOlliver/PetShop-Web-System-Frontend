@@ -12,7 +12,7 @@ export default function Login({ history }){
         // 596.963.263-22
 
         const response = await api.post("/login", { cpf });
-        console.log(response)
+
         if(!response.data.erro){
             localStorage.setItem("user", response.data._id);
             history.push("/menu");

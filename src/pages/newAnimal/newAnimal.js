@@ -9,34 +9,26 @@ export default function Animal({ history }){
     const [nome, setNome] = useState("");
     const [tipo, setTipo] = useState("");
     const [raca, setRaca] = useState("");
+    const user_id = localStorage.getItem("user");
 
     function isLogged(){
-        const _id = localStorage.getItem("user");
-        if(!_id){
+        if(!user_id){
             history.push("/login")
         }
     }
     
-    function endAnimal(event){
-        event.preventDefault();
-        history.push("/menu")
-    }
     async function handleSubmit(event){
         event.preventDefault();
         let errMsg = document.querySelector("div#erro");
 
         if(nome !== "" && tipo !== "" && raca !== ""){
-            
-            const user_id = localStorage.getItem("user");
+
             const response = await api.post("/user/animal", { nome, tipo, raca}, {headers: {user_id}});
 
             if(response.data._id || !response.data.erro){
                 
                 errMsg.className = "access-msg"
                 errMsg.innerText = "Pet cadastrado com sucesso!"
-
-                document.querySelector("button#fim").removeAttribute("disabled")
-                document.querySelector("button#fim").addEventListener("click", endAnimal)
     
                 setNome("");
                 setTipo("");
@@ -54,6 +46,10 @@ export default function Animal({ history }){
     function goToHome(){
         history.push("/");
     }
+
+    function goToMenu(){
+        history.push("/menu")
+    }
     return (
         <div className="container" onLoad={isLogged}>
             <nav>
@@ -66,7 +62,7 @@ export default function Animal({ history }){
             <div id="newBg"></div>
             <div className="content-new">
                 <div id="erro"></div>
-                <form className=" bg-azul-ciano" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <div id="titulo">
                         <img src={animalLogo} alt="Usuário"/>
                         <h2>Cadastro de Animal</h2>
@@ -91,7 +87,7 @@ export default function Animal({ history }){
                         onChange={event => setRaca(event.target.value)}
                     />
                     <div id="sub-btn">
-                        <button id="fim" disabled>fim</button>
+                        <button id="fim" onClick={goToMenu}>ir para o menu</button>
                         <button type="submit" id="novo">adicionar pet</button>
                     </div>
                 </form>
