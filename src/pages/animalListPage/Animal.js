@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import api from '../../services/api';
 
 import Logo from '../../assets/logo-horizontal.svg';
 import AnimalList from '../../assets/animal-list.svg';
 import eraser from '../../assets/eraser_icon.svg';
 import edit from '../../assets/edit_icon.svg';
 import back from '../../assets/back_icon.svg';
-import api from '../../services/api';
+import newAni from '../../assets/new-pet.svg';
 
 export default function Animal({history}){
 	const [ animal, setAnimal ] = useState([]);
 	const [ nomeEdit, setNomeEdit ] = useState("");
 	const [ tipoEdit, setTipoEdit ] = useState("");
 	const [ racaEdit, setRacaEdit ] = useState("");
+	const [ animalID, setAnimalID ] = useState("");
 	let modal = document.querySelector("div#modal-container");
 	var animal_id = [];
 
@@ -54,10 +56,10 @@ export default function Animal({history}){
 		loadAnimals()
 	},[])
 
-	async function updateAnimal(){
+	async function updateAnimalModal(){
 		let aviso = document.querySelector("div#errSelect");
 		if(animal_id.length === 1){
-			const [ ani_id ] = animal_id 
+			const [ ani_id ] = animal_id
 
 			const response = await api.get("/animal-list", {headers: {ani_id}});
 
@@ -65,11 +67,11 @@ export default function Animal({history}){
 				setNomeEdit(response.data.nome);
 				setTipoEdit(response.data.tipo);
 				setRacaEdit(response.data.raca);
+				setAnimalID(ani_id)
 			}else{
 				//
 			}
 			modal.classList.add("mostrar");
-			animal_id.splice(1,1)
 
 		}else{
 			aviso.className = "errNoSelect"
@@ -82,12 +84,37 @@ export default function Animal({history}){
 		} 
 	}
 
+	async function updateAnimal(){
+		const user_id = localStorage.user
+
+		let aviso = document.querySelector("div#errSelect");
+		const response = await api.put(`/edit-animal/${animalID}`,{ nomeEdit, tipoEdit, racaEdit }, { headers: { user_id } })
+
+		if(!response.data.erro){
+			const newAnimalList = await api.get("/animal-list", {headers: {user_id}});
+			aviso.classList.remove("hidden");
+			aviso.classList += "accessNoSelect"
+			aviso.innerText = "Edição realizada com sucesso."
+			setAnimal(newAnimalList.data)
+			setTimeout(()=>{
+				aviso.classList += " hidden"
+			}, 3000)
+
+
+		}else{
+			aviso.className = "errNoSelect"
+			aviso.innerText = `${response.data.erro}`
+		}
+
+		closeModal()
+	}
+
 	function closeModal(){
 		modal.classList.remove("mostrar");
-		// document.querySelector("#checkAnimal-0").checked = false;
-		// document.querySelector("#checkAnimal-1").checked = false;
+
 		for(let c = 0; c < animal.length; c++){
 			document.querySelector(`#checkAnimal-${c}`).checked = false;
+			animal_id.splice(0,1)
 		}
 	}
 
@@ -114,13 +141,6 @@ export default function Animal({history}){
 		}	
 	}
 
-	function containerClose(e){
-		if(e.target.id === "modal-container"){
-			modal.classList.remove("mostrar");
-
-		}
-	}
-
 	async function handleSubmit(e){
 		e.preventDefault()
 	}
@@ -131,6 +151,9 @@ export default function Animal({history}){
 
 	function goToHome(){
 		history.push("/");
+	} 
+	function goToNew(){
+		history.push("/new-animal");
 	}
 	return (
 		<>
@@ -161,8 +184,13 @@ export default function Animal({history}){
 						{animal.map((animal, index) => {
 							return (
 							<tr id={`animal-${index}`} key={animal._id}>
-								<td className="just-right">
-									<input type="checkbox" className="checkbox" name={`checkAnimal-${index}`} id={`checkAnimal-${index}`} onClick={() => getAnimal(animal._id)}/>
+								<td className="just-right minimize-80">
+									<input 
+										type="checkbox" 
+										className="checkbox" 
+										name={`checkAnimal-${index}`} 
+										id={`checkAnimal-${index}`} 
+										onClick={() => getAnimal(animal._id)}/>
 									<label htmlFor={`checkAnimal-${index}`}></label>
 								</td>
 								<td>{animal.nome}</td>
@@ -175,11 +203,15 @@ export default function Animal({history}){
 				</table>
 				<div id="footerAnimal">
 					<div id="errSelect"></div>
+					<button id="novoPet" onClick={goToNew}>
+						<img src={newAni} alt="Novo pet"/>
+						novo pet
+					</button>
 					<button id="apagar" onClick={destroyAnimal}>
 						<img src={eraser} alt="Apagar"/>
 						apagar
 					</button>
-					<button id="editar"  onClick={updateAnimal}>
+					<button id="editar"  onClick={updateAnimalModal}>
 						<img src={edit} alt="Editar"/>
 						editar
 					</button>
@@ -189,7 +221,7 @@ export default function Animal({history}){
 					</button>
 				</div>
 			</div>
-			<div id="modal-container" className="modal-container" onClick={containerClose}>
+			<div id="modal-container" className="modal-container">
 				<div id="modal" className="modal">
 					<form onSubmit={handleSubmit}>
 						{/* <div id="titulo">
@@ -224,7 +256,7 @@ export default function Animal({history}){
 						/>
 						<div id="sub-btn">
 								<button id="fim" onClick={closeModal}>voltar</button>
-								<button type="submit" id="novo">editar</button>
+								<button type="submit" id="novo" onClick={updateAnimal}>editar</button>
 						</div>
 					</form>
 				</div>
