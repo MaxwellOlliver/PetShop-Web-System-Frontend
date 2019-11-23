@@ -556,6 +556,16 @@ input[type = "checkbox"]{
 	transition: .2s;
 }
 
+.reverse-checkbox + label:before{
+	border: 1px solid rgb(255, 255, 255) !important;
+	color: transparent;
+}
+
+.reverse-checkbox:checked + label:before{
+	color: var(--azulClaro) !important;
+	background-color: rgb(255, 255, 255) !important;
+}
+
 .checkbox:checked + label:before {
 	color: rgb(255, 255, 255);
 	background-color: var(--azulClaro);
@@ -632,6 +642,7 @@ input[type = "checkbox"]{
 }
 
 .modal{
+	color: white;
 	padding: 35px 50px;
 	width: 550px;
 	background: var(--laranjaClaro);
@@ -699,3 +710,35 @@ input[type = "checkbox"]{
 	}
 }
 
+#modal-container-destroy .modal{
+	width: 350px;
+}
+
+#modal-container-destroy .modal button{
+	width: 110px;
+	height: 45px;
+	border-radius: 12px;
+	text-align: center;
+	color: white;
+	font-weight: 600;
+	
+	transition: .3s;
+}
+
+#modal-container-destroy .modal button#sim {
+	background-color: var(--azulClaro);
+}
+#modal-container-destroy .modal button#sim:hover {
+	background-color:	var(--azulHover);
+}
+#modal-container-destroy .modal button#nao {
+	background-color: var(--laranjaEscuro);
+}
+#modal-container-destroy .modal button#nao:hover {
+	background-color: var(--laranjaEscuroHover);
+}
+
+#modal-container-destroy .modal #sub-btn{
+	margin-top: 30px;
+	padding: 0;
+}

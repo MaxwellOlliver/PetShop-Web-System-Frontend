@@ -15,7 +15,29 @@ export default function Animal({history}){
 	const [ racaEdit, setRacaEdit ] = useState("");
 	const [ animalID, setAnimalID ] = useState("");
 	let modal = document.querySelector("div#modal-container");
+	let modalDestroy = document.querySelector("div#modal-container-destroy");
 	var animal_id = [];
+	let tamanho = animal.length
+	let check = document.querySelector("#selectAll");
+
+	function selectAll(){
+
+		if(check.checked === true){
+			for(let c = 0; c < animal.length; c++){
+				if(!animal_id.includes(animal[c]._id)){
+					animal_id.push(animal[c]._id)
+				}
+				document.querySelector(`#checkAnimal-${c}`).checked = true;
+			}
+		}else{
+			for(let c = 0; c < animal.length; c++){
+				document.querySelector(`#checkAnimal-${c}`).checked = false;
+			}
+			animal_id = [];
+		}
+
+		console.log(animal_id)
+	}
 
 	function getAnimal(id){
 		let alreadyHave = animal_id.includes(id);
@@ -24,12 +46,18 @@ export default function Animal({history}){
 		if(!alreadyHave){
 			animal_id.push(id);
 		}else{
+			
 			for(let c = 0; c <= animal_id.length; c++){
 				if(animal_id[c] === id){
 					animal_id.splice(c, 1);
 				}
 			}
 		}
+		document.querySelector("input#selectAll").checked = false;
+		if(animal_id.length === tamanho && check.checked === false){
+			check.checked = true
+		}
+		
 
 		if(animal_id.length > 0){
 			aviso.classList.remove("hidden")
@@ -37,6 +65,16 @@ export default function Animal({history}){
 			aviso.innerText = ""
 		}
 		console.log(animal_id)
+	}
+
+	function openModalDestroy(){
+		let aviso = document.querySelector("div#errSelect");
+		if(animal_id.length > 0){
+			modalDestroy.classList.add("mostrar")
+		}else{
+			aviso.className = "errNoSelect"
+			aviso.innerText = "Por favor, selecione um animal."
+		}
 	}
 	
 	useEffect(()=>{
@@ -85,9 +123,9 @@ export default function Animal({history}){
 	}
 
 	async function updateAnimal(){
-		const user_id = localStorage.user
-
+		const user_id = localStorage.user;
 		let aviso = document.querySelector("div#errSelect");
+
 		const response = await api.put(`/edit-animal/${animalID}`,{ nomeEdit, tipoEdit, racaEdit }, { headers: { user_id } })
 
 		if(!response.data.erro){
@@ -111,11 +149,23 @@ export default function Animal({history}){
 
 	function closeModal(){
 		modal.classList.remove("mostrar");
-
+		
+		document.querySelector("input#selectAll").checked = false;
 		for(let c = 0; c < animal.length; c++){
 			document.querySelector(`#checkAnimal-${c}`).checked = false;
 			animal_id.splice(0,1)
 		}
+	}
+
+	function closeModalDestroy(){
+		modalDestroy.classList.remove("mostrar");
+
+		document.querySelector("input#selectAll").checked = false;
+		for(let c = 0; c < animal.length; c++){
+			document.querySelector(`#checkAnimal-${c}`).checked = false;
+		}
+		animal_id = []
+
 	}
 
 	async function destroyAnimal(){
@@ -135,10 +185,8 @@ export default function Animal({history}){
 				aviso.className = "errNoSelect"
 				aviso.innerText = `${response.data.erro}`
 			}
-		} else {
-			aviso.className = "errNoSelect"
-			aviso.innerText = "Por favor, selecione um animal."
-		}	
+			closeModalDestroy()
+		}
 	}
 
 	async function handleSubmit(e){
@@ -174,7 +222,15 @@ export default function Animal({history}){
 				<table>
 					<thead>
 						<tr>
-							<th></th>
+							<th className="just-right">
+								<input 
+									type="checkbox" 
+									className="checkbox reverse-checkbox" 
+									name="selectAll"
+									id="selectAll"
+									onClick={selectAll}
+								/>
+								<label htmlFor="selectAll"></label></th>
 							<th>Nome do pet</th>
 							<th>Tipo</th>
 							<th>Raça</th>
@@ -207,7 +263,7 @@ export default function Animal({history}){
 						<img src={newAni} alt="Novo pet"/>
 						novo pet
 					</button>
-					<button id="apagar" onClick={destroyAnimal}>
+					<button id="apagar" onClick={openModalDestroy}>
 						<img src={eraser} alt="Apagar"/>
 						apagar
 					</button>
@@ -259,6 +315,15 @@ export default function Animal({history}){
 								<button type="submit" id="novo" onClick={updateAnimal}>editar</button>
 						</div>
 					</form>
+				</div>
+			</div>
+			<div id="modal-container-destroy" className="modal-container">
+				<div className="modal">
+					<h3>Tem certeza que deseja deletar os animais selecionados?</h3>
+					<div id="sub-btn">
+						<button id="nao" onClick={closeModalDestroy}>não</button>
+						<button id="sim" onClick={destroyAnimal}>sim</button>
+					</div>
 				</div>
 			</div>
 		</>
