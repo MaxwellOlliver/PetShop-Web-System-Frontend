@@ -109,7 +109,7 @@ export default function Schedule({history}){
 							>
 								<option value="DEFAULT" disabled>hh : mm</option>
 								{horaValidation[0]?horarios.map(hora => { return horaValidation.map((value, index) => { 
-									return hora !== value.hora ? <option key={index} value={hora}>{hora}</option>:"teste"
+									return hora !== value.hora ? <option key={index} value={hora}>{hora}</option>:""
 								}) }):horarios.map((hora, index)=>{return <option key={index} value={hora}>{hora}</option>})}
 							</select>
 						</div>

@@ -725,6 +725,15 @@ input[type = "checkbox"]{
 	transition: .3s;
 }
 
+.modal select{
+	width: 410px;
+	height: 45px;
+	border-radius: 12px;
+	margin-bottom: 20px;
+	font-size: 17px;
+	padding: 0 20px;
+}
+
 #modal-container-destroy .modal button#sim {
 	background-color: var(--azulClaro);
 }
