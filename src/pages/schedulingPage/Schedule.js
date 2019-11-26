@@ -48,13 +48,18 @@ export default function Schedule({history}){
 		event.preventDefault()
 		let errMsg = document.querySelector("div#erro");
 		const user_id = localStorage.getItem("user");
-		openModal()
+		const animal_id = animal;
 
 		if(animal !== "" && data !== "" && hora !== "" && servico !== ""){
 			const response = await api.post('/new-schedule', { animal, data, hora, servico }, {headers: {user_id}});
-					
+			
 			if(!response.data.erro){
+				const agenda_id = response.data._id
+				const pendente = await api.post('/pending', { data, hora, servico }, {headers:{ user_id, animal_id, agenda_id }});
+
+				if(!pendente.data.erro){
 					openModal()
+				}
 			}else{	
 					errMsg.className = "err-msg"
 					errMsg.innerText = response.data.erro
