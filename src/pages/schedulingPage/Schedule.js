@@ -12,14 +12,15 @@ export default function Schedule({history}){
 	const [ hora, setHour ] = useState("");
 	const [ servico, setService ] = useState();
 	const [ horaValidation, setHoraValidation] = useState([]);
-	const horarios = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"]
+	const horarios = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"];
+	const modal = document.querySelector("#modal-container");
 
-	function isLogged(){
+	useEffect(()=>{
 		const _id = localStorage.getItem("user");
 		if(!_id){
 				history.push("/login")
 		}
-	}
+	}, [history]);
 
 	useEffect(()=>{
 		async function getHour(){
@@ -30,6 +31,7 @@ export default function Schedule({history}){
 			}
 		}
 		getHour()
+
 	}, [data])
 
 	useEffect(()=>{
@@ -46,12 +48,13 @@ export default function Schedule({history}){
 		event.preventDefault()
 		let errMsg = document.querySelector("div#erro");
 		const user_id = localStorage.getItem("user");
+		openModal()
 
 		if(animal !== "" && data !== "" && hora !== "" && servico !== ""){
 			const response = await api.post('/new-schedule', { animal, data, hora, servico }, {headers: {user_id}});
 					
 			if(!response.data.erro){
-					history.push("/schedule-list");
+					openModal()
 			}else{	
 					errMsg.className = "err-msg"
 					errMsg.innerText = response.data.erro
@@ -61,17 +64,31 @@ export default function Schedule({history}){
 			errMsg.innerText = "Por favor, preencha todos os campos abaixo."
 		}
 	}
+
+	function openModal(){
+		modal.classList.add("mostrar");
+	}
+
+	function goToMenu(){
+		history.push("/menu");
+	}
 	
 	function goToHome(){
 		history.push("/");
 	}
+	function logout(){
+		localStorage.removeItem("user");
+		history.push("/");
+	}
 	return (
-		<div className="container" onLoad={isLogged}>
+		<>
+		<div className="container">
 			<nav>
         <img src={Logo} alt="PetsCão" id="homeLogo"/>
         <div id="menu">
           <button id="homeLogin" onClick={goToHome}>home</button>
           <button id="entrarLogin" disabled>menu</button>
+					<button id="logout" onClick={logout}>sair</button>
         </div>
       </nav>
 			<div id="newBg"></div>
@@ -133,6 +150,13 @@ export default function Schedule({history}){
 					</form>
 					<span><strong>Atenção! Escolha qual Pet irá agendar, escolha a data <br/> e hora e depois o tipo de serviço, e clique em <span>agendar</span>.</strong></span>
 				</div>
-		</div>
+			</div>
+				<div id="modal-container" className="modal-container">
+					<div className="modal">
+					<h3><span>Eba! Tudo ocorreu bem!</span><br/><p>Agora, aguarde até que a gente confirme seu agendamento. <br/> Não se preocupe, te enviaremos um e-mail assim que confirmarmos.</p></h3>
+					<button onClick={goToMenu}>OK!</button>
+				</div>
+			</div>
+		</>
 	)
 }

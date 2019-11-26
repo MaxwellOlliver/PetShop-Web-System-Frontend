@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import Logo from '../../assets/logo-horizontal.svg';
 import animalLogo from '../../assets/animal-menu.svg';
 import scheduleLogo from '../../assets/agenda-menu.svg';
 
 export default function Menu({ history }){
-  function isLogged(){
+	useEffect(()=>{
 		const _id = localStorage.getItem("user");
 		if(!_id){
 				history.push("/login")
 		}
-	}
+	}, [history]);
 
   function goToHome(){
     history.push("/");
@@ -23,14 +23,19 @@ export default function Menu({ history }){
   function goToScheduleList(){
     history.push("/schedule-list")
   }
+  function logout(){
+		localStorage.removeItem("user");
+		history.push("/");
+	}
   
   return(
-    <div className="container" onLoad={isLogged}>
+    <div className="container">
       <nav>
         <img src={Logo} alt="PetsCão" id="homeLogo"/>
         <div id="menu">
           <button id="homeLogin" onClick={goToHome}>home</button>
           <button id="entrarLogin" disabled>menu</button>
+          <button id="logout" onClick={logout}>sair</button>
         </div>
       </nav>
       <div id="newBg"></div>

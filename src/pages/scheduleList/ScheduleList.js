@@ -4,41 +4,35 @@ import api from '../../services/api';
 import Logo from '../../assets/logo-horizontal.svg';
 import ScheduleList from '../../assets/schedule-logo-header.svg';
 import eraser from '../../assets/eraser_icon.svg';
-import edit from '../../assets/edit_icon.svg';
 import back from '../../assets/back_icon.svg';
 import newSch from '../../assets/schedule-icon.svg';
 
 export default function Agendamento({history}){
-  const [ animal, setAnimal ] = useState([]);
 	const [ agendamento, setAgendamento ] = useState([]);
-	const [ animalEdit, setAnimalEdit ] = useState("");
-	const [ animalValue, setAnimalValue ] = useState("");
-	const [ servicoEdit, setServicoEdit ] = useState("");
-	const [ dataEdit, setDataEdit ] = useState("");
-	const [ horaEdit, setHoraEdit ] = useState("");
-	const [ agendaID, setAgendaID ] = useState("");
-	let modal = document.querySelector("div#modal-container");
 	let modalDestroy = document.querySelector("div#modal-container-destroy");
 	var agendamento_id = [];
 	let tamanho = agendamento.length
   let check = document.querySelector("#selectAll");
-  const [ horaValidation, setHoraValidation] = useState([]);
-  const horarios = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"];
+	
+	useEffect(()=>{
+		const _id = localStorage.getItem("user");
+		if(!_id){
+				history.push("/login")
+		}
+	}, [history]);
 
   useEffect(()=>{
     const user_id = localStorage.getItem('user')
     async function loadAgendamentos(){
       const response = await api.get("/schedule-list", { headers:{user_id} });
-      const animals = await api.get("/animal-list", { headers: {user_id} });
   
       if(!response.data.message){
         setAgendamento(response.data)
-        setAnimal(animals.data)
       }else{
         let err = document.querySelector("div#noAgendamento")
         err.className = "noAgendamento-modal"
         err.innerText = `${response.data.message}`
-      }
+			}
   
     }
     loadAgendamentos()
@@ -59,19 +53,7 @@ export default function Agendamento({history}){
 			}
 			agendamento_id = [];
 		}
-
-		console.log(agendamento_id)
   }
-  useEffect(()=>{
-		async function getHour(){
-			const hour = await api.get("/get-hours", {headers:{dataEdit}});
-			
-			if(hour.data){
-				setHoraValidation(hour.data)
-			}
-		}
-		getHour()
-	}, [dataEdit])
 
 	function getAgenda(id){
 		let alreadyHave = agendamento_id.includes(id);
@@ -98,7 +80,7 @@ export default function Agendamento({history}){
 			aviso.classList.add("hidden")
 			aviso.innerText = ""
 		}
-		console.log(agendamento_id)
+		console.log(agendamento_id.length)
 	}
 
 	function openModalDestroy(){
@@ -108,76 +90,6 @@ export default function Agendamento({history}){
 		}else{
 			aviso.className = "errNoSelect"
 			aviso.innerText = "Por favor, selecione um agendamento."
-		}
-	}
-	
-
-	async function updateScheduleModal(){
-    let aviso = document.querySelector("div#errSelect");
-    let user_id = localStorage.user;
-		if(agendamento_id.length === 1){
-			const [ agenda_id ] = agendamento_id
-
-      const response = await api.get("/schedule-list", {headers: {user_id, agenda_id}});
-
-			if(!response.data.erro){
-        let date = response.data.data.split("/");
-				setAnimalEdit(response.data.animal);
-				setServicoEdit(response.data.servico);
-				setDataEdit(`${date[2]}-${date[1]}-${date[0]}`);
-				setHoraEdit(response.data.hora);
-        setAgendaID(agenda_id);
-			}else{
-				//
-			}
-			modal.classList.add("mostrar");
-
-		}else{
-			aviso.className = "errNoSelect"
-			if(agendamento_id.length > 1){
-				aviso.innerText = "Selecione um de cada vez."
-			}else{
-				aviso.innerText = 'Por favor, selecione um agendamento.'
-			}
-			
-		} 
-	}
-
-	async function updateSchedule(){
-		const user_id = localStorage.user;
-    let aviso = document.querySelector("div#errSelect");
-    
-    console.log(dataEdit)
-    console.log(animalEdit)
-
-		const response = await api.put(`/edit-schedule/${agendaID}`,{ animalValue, servicoEdit, dataEdit, horaEdit }, { headers: { user_id } })
-
-		if(!response.data.erro){
-			const newScheduleList = await api.get("/schedule-list", {headers: {user_id}});
-			aviso.classList.remove("hidden");
-			aviso.classList += "accessNoSelect"
-			aviso.innerText = "Edição realizada com sucesso."
-			setAgendamento(newScheduleList.data)
-			setTimeout(()=>{
-				aviso.classList += " hidden"
-			}, 3000)
-
-
-		}else{
-			aviso.className = "errNoSelect"
-			aviso.innerText = `${response.data.erro}`
-		}
-
-		closeModal()
-	}
-
-	function closeModal(){
-		modal.classList.remove("mostrar");
-		
-		document.querySelector("input#selectAll").checked = false;
-		for(let c = 0; c < agendamento.length; c++){
-			document.querySelector(`#checkAgenda-${c}`).checked = false;
-			agendamento_id.splice(0,1)
 		}
 	}
 
@@ -214,10 +126,6 @@ export default function Agendamento({history}){
 		}
 	}
 
-	async function handleSubmit(e){
-		e.preventDefault()
-	}
-
 	function goToMenu(){
 		history.push("/menu");
 	}
@@ -228,6 +136,11 @@ export default function Agendamento({history}){
 	function goToNew(){
 		history.push("/new-schedule");
 	}
+
+	function logout(){
+		localStorage.removeItem("user");
+		history.push("/");
+	}
 	return (
 		<>
 			<div className="container">
@@ -236,6 +149,7 @@ export default function Agendamento({history}){
 					<div id="menu">
 						<button id="homeLogin" onClick={goToHome}>home</button>
 						<button id="entrarLogin" disabled>agendamentos</button>
+						<button id="logout" onClick={logout}>sair</button>
 					</div>
 				</nav>
 				<div id="headerAnimal">
@@ -294,61 +208,18 @@ export default function Agendamento({history}){
 						<img src={eraser} alt="Apagar"/>
 						apagar
 					</button>
-					<button id="editar"  onClick={updateScheduleModal}>
-						<img src={edit} alt="Editar"/>
-						editar
-					</button>
 					<button id="voltar" onClick={goToMenu}>
 						<img src={back} alt="Voltar"/>
 						voltar
 					</button>
-				</div>
-			</div>
-			<div id="modal-container" className="modal-container">
-				<div id="modal" className="modal">
-					<form onSubmit={handleSubmit}>
-          <select 
-							name="animal" 
-							id="animal"
-							onChange={event => setAnimalValue(event.target.value)}
-						>
-							{animal.map(animal => {
-								return <option key={animal._id} value={animal._id}>{animal.nome}</option>
-							})}
-						</select>
-						<input 
-								type="text"
-								placeholder="Tipo de Serviço"
-								value={servicoEdit}
-								onChange={(event => setServicoEdit(event.target.value))}
-						/>
-						<input 
-                type="date"
-                placeholder={dataEdit}
-								value={dataEdit}
-								onChange={(event => setDataEdit(event.target.value))}
-						/>
-						<select 
-              name="hour" 
-              id="hour"
-              defaultValue={"DEFAULT"}
-              onChange={event => setHoraEdit(event.target.value)}
-						>
-              <option value="DEFAULT" disabled>{horaEdit}</option>
-              {horaValidation[0]?horarios.map(hora => { return horaValidation.map((value, index) => { 
-                return hora !== value.hora ? <option key={index} value={hora}>{hora}</option>:"teste"
-              }) }):horarios.map((hora, index)=>{return <option key={index} value={hora}>{hora}</option>})}
-						</select>
-						<div id="sub-btn">
-								<button id="fim" onClick={closeModal}>voltar</button>
-								<button type="submit" id="novo" onClick={updateSchedule}>editar</button>
-						</div>
-					</form>
+					<span>• Caso queira mudar o dia ou hora, por favor, <br/>
+						nos mande um email ou ligue no número (92) 2597-1288.
+					</span>
 				</div>
 			</div>
 			<div id="modal-container-destroy" className="modal-container">
 				<div className="modal">
-					<h3>Tem certeza que deseja deletar os animais selecionados?</h3>
+					<h3>Tem certeza que deseja deletar os agendamentos selecionados?</h3>
 					<div id="sub-btn">
 						<button id="nao" onClick={closeModalDestroy}>não</button>
 						<button id="sim" onClick={destroySchedule}>sim</button>

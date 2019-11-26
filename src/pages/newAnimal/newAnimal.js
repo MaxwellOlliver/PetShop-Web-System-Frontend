@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../../services/api'
 import '../loginPage/style.css'
 
@@ -11,11 +11,12 @@ export default function Animal({ history }){
     const [raca, setRaca] = useState("");
     const user_id = localStorage.getItem("user");
 
-    function isLogged(){
-        if(!user_id){
-            history.push("/login")
-        }
-    }
+	useEffect(()=>{
+		const _id = localStorage.getItem("user");
+		if(!_id){
+				history.push("/login")
+		}
+	}, [history]);
     
     async function handleSubmit(event){
         event.preventDefault();
@@ -50,13 +51,18 @@ export default function Animal({ history }){
     function goToMenu(){
         history.push("/menu")
     }
+    function logout(){
+		localStorage.removeItem("user");
+		history.push("/");
+	}
     return (
-        <div className="container" onLoad={isLogged}>
+        <div className="container">
             <nav>
                 <img src={Logo} alt="PetsCão" id="homeLogo"/>
                 <div id="menu">
                     <button id="homeLogin" onClick={goToHome}>home</button>
-                    <button id="entrarLogin" disabled>Criar conta</button>
+                    <button id="entrarLogin" disabled>novo animal</button>
+                    <button id="logout" onClick={logout}>sair</button>
                 </div>
             </nav>
             <div id="newBg"></div>

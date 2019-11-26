@@ -20,6 +20,13 @@ export default function Animal({history}){
 	let tamanho = animal.length
 	let check = document.querySelector("#selectAll");
 
+	useEffect(()=>{
+		const _id = localStorage.getItem("user");
+		if(!_id){
+				history.push("/login")
+		}
+	}, [history]);
+
 	function selectAll(){
 
 		if(check.checked === true){
@@ -203,6 +210,10 @@ export default function Animal({history}){
 	function goToNew(){
 		history.push("/new-animal");
 	}
+	function logout(){
+		localStorage.removeItem("user");
+		history.push("/");
+	}
 	return (
 		<>
 			<div className="container">
@@ -211,6 +222,7 @@ export default function Animal({history}){
 					<div id="menu">
 						<button id="homeLogin" onClick={goToHome}>home</button>
 						<button id="entrarLogin" disabled>seus animais</button>
+						<button id="logout" onClick={logout}>sair</button>
 					</div>
 				</nav>
 				<div id="headerAnimal">
