@@ -191,7 +191,7 @@ export default function Agendamento({history}){
 								</td>
 								<td>{agendamento.animal.nome}</td>
 								<td>{agendamento.servico}</td>
-								<td>{agendamento.data}</td>
+								<td>{new Date(agendamento.data).toLocaleDateString("pt-BR", {timeZone: "UTC"})}</td>
 								<td>{agendamento.hora}</td>
 							</tr>
 							)

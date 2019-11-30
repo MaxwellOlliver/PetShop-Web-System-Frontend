@@ -23,6 +23,7 @@ html, body, #root {
 	font-family:'Poppins', Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	background: var(--azulMedio) !important;
+	scroll-behavior: smooth;
 }
 	
 
@@ -183,6 +184,12 @@ div#newBg{
 	}
 	.content-new div#menuButtons {
 		width: 480px;
+	}
+}
+
+@media(max-width: 1150px){
+	nav a{
+		display: none;
 	}
 }
 
@@ -793,4 +800,8 @@ input[type = "checkbox"]{
 #modal-container-destroy .modal #sub-btn{
 	margin-top: 30px;
 	padding: 0;
+}
+
+.h-80 {
+	height: 80px;
 }

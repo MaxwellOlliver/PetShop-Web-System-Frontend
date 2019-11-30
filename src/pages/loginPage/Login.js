@@ -15,7 +15,7 @@ export default function Login({ history }){
 
         if(!response.data.erro){
             localStorage.setItem("user", response.data._id);
-            history.push("/menu");
+            history.push("/");
         }else{
             if(cpf === ""){
                 response.data.erro = "Por favor, preencha o campo abaixo."

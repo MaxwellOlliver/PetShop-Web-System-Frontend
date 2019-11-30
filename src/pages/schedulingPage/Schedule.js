@@ -39,10 +39,27 @@ export default function Schedule({history}){
 			const user_id = localStorage.getItem("user");
 			const response = await api.get("/animal-list", {headers: {user_id}});
 
-			setAnimalList(response.data)
+			if(!response.data.message){
+				setAnimalList(response.data)
+			}else{
+				let err = document.querySelector("div#erro");
+				let count = 10;
+				err.classList.add("err-msg");
+				err.classList.add("h-80");
+				start()
+				function start(){
+					if(count === 0){
+						history.push("/new-animal");
+					}
+					count -= 1
+					err.innerHTML = `Por favor adicione um pet antes de fazer um agendamento.<br>Você será redirecionado para a aba de adição de pet em ${count}`
+					setTimeout(start, 1000);
+				}
+			}
+
 		}
 		loadAnimals()
-	}, [])
+	}, [history])
 
 	async function handleSubmit(event){
 		event.preventDefault()
@@ -71,11 +88,13 @@ export default function Schedule({history}){
 	}
 
 	function openModal(){
-		modal.classList.add("mostrar");
-	}
+		if(animal !== [] && data !== "" && hora !== "" && servico !== []){
+			modal.classList.add("mostrar");
+		}else{
+			document.querySelector("div#erro").classList.add("err-msg");
+			document.querySelector("div#erro").innerText = "Por favor, preencha todos os campos.";
 
-	function goToMenu(){
-		history.push("/menu");
+		}
 	}
 	
 	function goToHome(){
@@ -159,7 +178,7 @@ export default function Schedule({history}){
 				<div id="modal-container" className="modal-container">
 					<div className="modal">
 					<h3><span>Eba! Tudo ocorreu bem!</span><br/><p>Agora, aguarde até que a gente confirme seu agendamento. <br/> Não se preocupe, te enviaremos um e-mail assim que confirmarmos.</p></h3>
-					<button onClick={goToMenu}>OK!</button>
+					<button onClick={goToHome}>OK!</button>
 				</div>
 			</div>
 		</>

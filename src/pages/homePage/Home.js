@@ -20,15 +20,26 @@ export default function Home({ history }){
     function goToNew(){
         history.push("/new-user");
     }
-    function goToMenu(){
-        history.push("/menu");
+    function goToNewSchedule(){
+        history.push("/new-schedule");
+    }
+
+    function goToAnimal(){
+        history.push("/animal-list");
+    }
+    function goToSchedule(){
+        history.push("/schedule-list");
     }
     return (
         <div className="container bg-yellow">
             <nav>
                 <img src={Logo} alt="PetsCão" id="homeLogo"/>
-                <div id="menu">
-                    <button id="home" disabled>home</button>
+                <div id="menu">]
+                    <a href="#sobre">sobre</a>
+                    <a href="#agendamentos">agendamentos</a>
+                    <a href="#equipe">equipe</a>
+                    {user_id?<button id="entrar" onClick={goToAnimal}>meus pets</button>: null}
+                    {user_id?<button id="entrar" onClick={goToSchedule}>meus agendamentos</button>: null}
                     <button id="entrar" onClick={user_id? logout:goToLogin}>{user_id ? "sair": "fazer login"}</button>
                 </div>
             </nav>
@@ -38,7 +49,7 @@ export default function Home({ history }){
                 </span>
                 <br/>
                 <div id="buttons">
-                    <button id="entrar" onClick={user_id?goToMenu:goToNew}>{user_id?"Ir ao menu":"Criar uma conta"}</button>
+                    <button id="entrar" onClick={user_id?goToNewSchedule:goToNew}>{user_id?"Criar agenadamento":"Criar uma conta"}</button>
                     <a href="mailto:petscaocompany@gmail.com"><button id="send-email">enviar email</button></a>                    
                 </div>
             </div>
@@ -46,9 +57,9 @@ export default function Home({ history }){
                 <h1>Serviços Pet’scão</h1>
                 <span>Abaixo temos alguns serviços que oferecemos aqui na Pet’scão.<br/>Atendemos de Segunda á Sábado das 9 às 20 horas.</span>
                 <div id="servicos">
-                    <div id="banho-tosa">
+                    <div id="sobre">
                         <img src={tosaLogo} alt="Tosa e Banho"/>
-                        <h3>Banho e Tosa</h3>
+                        <h3>Sobre a Pet'sCão</h3>
                         <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</span>
                     </div>
                     <div id="agendamentos">
