@@ -48,8 +48,8 @@ export default function Animal({ history }){
         history.push("/");
     }
 
-    function goToMenu(){
-        history.push("/menu")
+    function goToPets(){
+        history.push("/animal-list")
     }
     function logout(){
 		localStorage.removeItem("user");
@@ -60,8 +60,7 @@ export default function Animal({ history }){
             <nav>
                 <img src={Logo} alt="PetsCão" id="homeLogo"/>
                 <div id="menu">
-                    <button id="homeLogin" onClick={goToHome}>home</button>
-                    <button id="entrarLogin" disabled>novo animal</button>
+                    <button id="homeLogin" onClick={goToHome}>página inicial</button>
                     <button id="logout" onClick={logout}>sair</button>
                 </div>
             </nav>
@@ -93,12 +92,12 @@ export default function Animal({ history }){
                         onChange={event => setRaca(event.target.value)}
                     />
                     <div id="sub-btn">
-                        <button id="fim" onClick={goToMenu}>ir para o menu</button>
+                        <button id="fim" onClick={goToPets}>ir para meus pets</button>
                         <button type="submit" id="novo">adicionar pet</button>
                     </div>
                 </form>
-                <span><strong>Atenção!</strong> Após cadastrar seu Pet finalize clicando <span>fim</span>. <br/>
-                Se for cadastrar outro Pet clique em <span id="petSpan">novo pet</span>.</span>
+                <span><strong>Atenção!</strong> Após cadastrar seu Pet finalize clicando fim. <br/>
+                Se for cadastrar outro Pet clique em novo pet.</span>
             </div>
         </div>
     )

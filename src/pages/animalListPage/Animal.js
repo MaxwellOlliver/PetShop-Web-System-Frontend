@@ -220,8 +220,7 @@ export default function Animal({history}){
 				<nav>
 					<img src={Logo} alt="PetsCão" id="homeLogo"/>
 					<div id="menu">
-						<button id="homeLogin" onClick={goToHome}>home</button>
-						<button id="entrarLogin" disabled>seus animais</button>
+						<button id="homeLogin" onClick={goToHome}>página inicial</button>
 						<button id="logout" onClick={logout}>sair</button>
 					</div>
 				</nav>

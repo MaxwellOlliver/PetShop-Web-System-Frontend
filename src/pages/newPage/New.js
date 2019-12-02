@@ -31,8 +31,6 @@ export default function New({ history }){
 							pass: 'petscao2019'
 					}
 			});
-
-			
 			// eslint-disable-next-line no-unused-vars
 			let info = transporter.sendMail({
 					from: "'PetsCão' <petscaocompany@gmail.com>", 
@@ -56,6 +54,10 @@ export default function New({ history }){
 		history.push("/");
 	}
 
+	function goToLogin(){
+		history.push("/login");
+	}
+
 	useEffect(()=>{
 		const _id = localStorage.getItem("user");
 		if(_id){
@@ -67,8 +69,8 @@ export default function New({ history }){
 			<nav>
 				<img src={Logo} alt="PetsCão" id="homeLogo"/>
 				<div id="menu">
-					<button id="homeLogin" onClick={goToHome}>home</button>
-					<button id="entrarLogin" disabled>Criar conta</button>
+					<button id="homeLogin" onClick={goToHome}>página inicial</button>
+					<button className="btn-gray" onClick={goToLogin}>fazer login</button>
 				</div>
 			</nav>
 			<div id="newBg"></div>

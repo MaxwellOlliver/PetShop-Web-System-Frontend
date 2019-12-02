@@ -25,6 +25,26 @@ html, body, #root {
 	background: var(--azulMedio) !important;
 	scroll-behavior: smooth;
 }
+
+::-webkit-scrollbar {
+	background: rgb(233, 233, 233);
+	width: 15px;	
+}
+::-webkit-scrollbar-button {
+	display: none;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 8px;
+	background: rgba(128, 128, 128, 0.5);
+}
+
+::-webkit-scrollbar-corner {
+	border-radius: 0 0 8px 0;
+}
+
+::-webkit-resizer {
+	border-radius: 0 0 8px 0;
+}
 	
 
 nav {
@@ -677,6 +697,7 @@ input[type = "checkbox"]{
 
 	animation: modal .3s ease-out;
 }
+
 .modal h3 span{
 	font-size: 30px;
 }
@@ -804,4 +825,32 @@ input[type = "checkbox"]{
 
 .h-80 {
 	height: 80px;
+}
+
+button#voltar img{
+	height: 18px;
+	width: 18px;
+	margin-right: 10px;
+}
+
+button#login {
+	background-color: var(--cinza);
+}
+
+button#login:hover {
+	background-color: var(--cinzaHover);
+}
+
+.btn-gray {
+	font-weight: 500;
+  color:#000000;
+  background: none;
+
+  transition: .3s;
+}
+
+.btn-gray:hover {
+	font-weight: 500;
+  color:#FFFFFF;
+  background: rgb(167, 167, 167);
 }
