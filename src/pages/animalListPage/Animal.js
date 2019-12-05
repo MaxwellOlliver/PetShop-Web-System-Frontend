@@ -28,22 +28,21 @@ export default function Animal({history}){
 	}, [history]);
 
 	function selectAll(){
-
-		if(check.checked === true){
-			for(let c = 0; c < animal.length; c++){
-				if(!animal_id.includes(animal[c]._id)){
-					animal_id.push(animal[c]._id)
+		if(animal[0]){
+			if(check.checked === true){
+				for(let c = 0; c < animal.length; c++){
+					if(!animal_id.includes(animal[c]._id)){
+						animal_id.push(animal[c]._id)
+					}
+					document.querySelector(`#checkAnimal-${c}`).checked = true;
 				}
-				document.querySelector(`#checkAnimal-${c}`).checked = true;
+			}else{
+				for(let c = 0; c < animal.length; c++){
+					document.querySelector(`#checkAnimal-${c}`).checked = false;
+				}
+				animal_id = [];
 			}
-		}else{
-			for(let c = 0; c < animal.length; c++){
-				document.querySelector(`#checkAnimal-${c}`).checked = false;
-			}
-			animal_id = [];
 		}
-
-		console.log(animal_id)
 	}
 
 	function getAnimal(id){
@@ -71,7 +70,7 @@ export default function Animal({history}){
 			aviso.classList.add("hidden")
 			aviso.innerText = ""
 		}
-		console.log(animal_id)
+		
 	}
 
 	function openModalDestroy(){
@@ -210,12 +209,21 @@ export default function Animal({history}){
 		localStorage.removeItem("user");
 		history.push("/");
 	}
+	function goToSchedule(){
+		history.push("/schedule-list");
+	}
+
+	function goToPerfil(){
+			history.push("/me")
+	} 
 	return (
 		<>
 			<div className="container">
 				<nav>
 					<img src={Logo} alt="PetsCão" id="homeLogo"/>
 					<div id="menu">
+						<button id="entrar" onClick={goToSchedule}>meus agendamentos</button>
+            <button id="entrar" onClick={goToPerfil}>meu perfil</button>
 						<button id="homeLogin" onClick={goToHome}>página inicial</button>
 						<button id="logout" onClick={logout}>sair</button>
 					</div>

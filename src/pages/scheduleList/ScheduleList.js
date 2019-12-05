@@ -25,12 +25,12 @@ export default function Agendamento({history}){
     const user_id = localStorage.getItem('user')
     async function loadAgendamentos(){
       const response = await api.get("/schedule-list", { headers:{user_id} });
-  
+			console.log(response)
       if(!response.data.message){
         setAgendamento(response.data)
-      }else{
+      }else if(response.data.message){
         let err = document.querySelector("div#noAgendamento")
-        err.className = "noAgendamento-modal"
+        err.className = "noAnimal-modal"
         err.innerText = `${response.data.message}`
 			}
   
@@ -39,19 +39,21 @@ export default function Agendamento({history}){
   },[]);
 
 	function selectAll(){
-
-		if(check.checked === true){
-			for(let c = 0; c < agendamento.length; c++){
-        if(!agendamento_id.includes(agendamento[c]._id)){
-					agendamento_id.push(agendamento[c]._id)
+		console.log(agendamento)
+		if(agendamento[0]){
+			if(check.checked === true){
+				for(let c = 0; c < agendamento.length; c++){
+					if(!agendamento_id.includes(agendamento[c]._id)){
+						agendamento_id.push(agendamento[c]._id)
+					}
+					document.querySelector(`#checkAgenda-${c}`).checked = true;
 				}
-				document.querySelector(`#checkAgenda-${c}`).checked = true;
+			}else{
+				for(let c = 0; c < agendamento.length; c++){
+					document.querySelector(`#checkAgenda-${c}`).checked = false;
+				}
+				agendamento_id = [];
 			}
-		}else{
-			for(let c = 0; c < agendamento.length; c++){
-        document.querySelector(`#checkAgenda-${c}`).checked = false;
-			}
-			agendamento_id = [];
 		}
   }
 
@@ -80,7 +82,6 @@ export default function Agendamento({history}){
 			aviso.classList.add("hidden")
 			aviso.innerText = ""
 		}
-		console.log(agendamento_id.length)
 	}
 
 	function openModalDestroy(){
@@ -137,12 +138,21 @@ export default function Agendamento({history}){
 		localStorage.removeItem("user");
 		history.push("/");
 	}
+	
+	function goToAnimal(){
+		history.push("/animal-list");
+	}
+	function goToPerfil(){
+		history.push("/me")
+	} 
 	return (
 		<>
 			<div className="container">
 				<nav>
 					<img src={Logo} alt="PetsCão" id="homeLogo"/>
 					<div id="menu">
+						<button id="entrar" onClick={goToAnimal}>meus pets</button>
+						<button id="entrar" onClick={goToPerfil}>meu perfil</button>
 						<button id="homeLogin" onClick={goToHome}>página inicial</button>
 						<button id="logout" onClick={logout}>sair</button>
 					</div>
