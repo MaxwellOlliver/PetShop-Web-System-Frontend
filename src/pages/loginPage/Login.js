@@ -60,7 +60,7 @@ export default function Login({ history }){
 											</button>
 											<button id="voltar" onClick={goToHome}>
 												<img src={Voltar} alt="Voltar"/>
-												<span>voltar</span>
+												voltar
 											</button>
 											
 										</div>
@@ -68,6 +68,7 @@ export default function Login({ history }){
 										<span>Não tem uma conta? <span id="toNew" onClick={goToNew}>Crie aqui</span></span>
 								</form>
 								<span><strong>Atenção!</strong> Para fazer agendamentos e consultas<br/> É necessário ter um cadastro em nosso sistema.</span>
+								<span>Em casos de perca do número de acesso, favor <br/>nos mande um email ou nos ligue.</span>
 						</div>
 				</div>
 		)

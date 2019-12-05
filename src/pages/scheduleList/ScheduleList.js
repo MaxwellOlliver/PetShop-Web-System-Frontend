@@ -126,10 +126,6 @@ export default function Agendamento({history}){
 		}
 	}
 
-	function goToMenu(){
-		history.push("/menu");
-	}
-
 	function goToHome(){
 		history.push("/");
 	} 
@@ -207,7 +203,7 @@ export default function Agendamento({history}){
 						<img src={eraser} alt="Apagar"/>
 						apagar
 					</button>
-					<button id="voltar" onClick={goToMenu}>
+					<button id="voltar" onClick={goToHome}>
 						<img src={back} alt="Voltar"/>
 						voltar
 					</button>

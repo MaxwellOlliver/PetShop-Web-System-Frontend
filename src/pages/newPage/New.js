@@ -32,7 +32,7 @@ export default function New({ history }){
 					}
 			});
 			// eslint-disable-next-line no-unused-vars
-			let info = transporter.sendMail({
+			let info = await transporter.sendMail({
 					from: "'PetsCão' <petscaocompany@gmail.com>", 
 					to: email, 
 					subject: 'Bem vindo ao PetsCão',
@@ -61,7 +61,7 @@ export default function New({ history }){
 	useEffect(()=>{
 		const _id = localStorage.getItem("user");
 		if(_id){
-			history.push("/menu");
+			history.push("/");
 		}
 	}, [history]);
 	return (

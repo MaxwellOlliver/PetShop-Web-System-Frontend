@@ -30,16 +30,21 @@ export default function Home({ history }){
     function goToSchedule(){
         history.push("/schedule-list");
     }
+
+    function goToPerfil(){
+        history.push("/me")
+    } 
     return (
         <div className="container bg-yellow">
             <nav>
                 <img src={Logo} alt="PetsCão" id="homeLogo"/>
                 <div id="menu">]
-                    <a href="#sobre">sobre</a>
-                    <a href="#agendamentos">serviços</a>
-                    <a href="#equipe">equipe</a>
+                    <a href="#txtContentSobre">sobre</a>
+                    <a href="#txtContentServicos">serviços</a>
+                    <a href="#txtContentEquipe">equipe</a>
                     {user_id?<button id="entrar" onClick={goToAnimal}>meus pets</button>: null}
                     {user_id?<button id="entrar" onClick={goToSchedule}>meus agendamentos</button>: null}
+                    {user_id?<button id="entrar" onClick={goToPerfil}>meu perfil</button>: null}
                     <button id="entrar" onClick={user_id? logout:goToLogin}>{user_id ? "sair": "fazer login"}</button>
                 </div>
             </nav>
@@ -72,6 +77,27 @@ export default function Home({ history }){
                         <h3>Equipe</h3>
                         <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</span>
                     </div>
+                </div>
+            </div>
+            <div className="sobre">
+                <div id="imgSobre"></div>
+                <div id="txtContentSobre">
+                    <h3>Sobre a Pet's Cão</h3><br></br>
+                    <span>Trabalhamos para que você e seus pets tenham a melhor experiência em nossas lojas, seja através dos serviços de estética ou pela variedade de produtos da loja para cães, gatos, peixes, aves, roedores, répteis. <br/><br/><strong>Nossa Missão:</strong> Criar valor na interação com os apaixonados por animais de estimação, potencializando o bem da relação entre o pet e sua família.<br/><br/><strong>Nossa Visão:</strong> Ser a maior e uma das melhores redes de pet shops da América Latina.<br/><br/><strong>Nossos Valores:</strong> Somos apaixonados por pets<br></br>• Respeitamos uns aos outros<br></br>• Reconhecemos esforços, premiamos resultados<br></br>• Encantamos nossos clientes<br></br>• Temos prazer em servir.</span>
+                </div>
+            </div>
+            <div className="servicos">
+                <div id="imgServicos"></div>
+                <div id="txtContentServicos">
+                    <h3>Serviços</h3>
+                    <span><br/><br/><strong>Nossa Missão:</strong> Criar valor na interação com os apaixonados por animais de estimação, potencializando o bem da relação entre o pet e sua família.<br/><br/><strong>Nossa Visão:</strong> Ser a maior e uma das melhores redes de pet shops da América Latina.<br/><br/><strong>Nossos Valores:</strong> Somos apaixonados por pets<br></br>• Respeitamos uns aos outros<br></br>• Reconhecemos esforços, premiamos resultados<br></br>• Encantamos nossos clientes<br></br>• Temos prazer em servir.</span>
+                </div>
+            </div>
+            <div className="equipe">
+                <div id="imgEquipe"></div>
+                <div id="txtContentEquipe">
+                    <h3>Equipe</h3>
+                    <span><br/><br/><strong>Nossa Missão:</strong> Criar valor na interação com os apaixonados por animais de estimação, potencializando o bem da relação entre o pet e sua família.<br/><br/><strong>Nossa Visão:</strong> Ser a maior e uma das melhores redes de pet shops da América Latina.<br/><br/><strong>Nossos Valores:</strong> Somos apaixonados por pets<br></br>• Respeitamos uns aos outros<br></br>• Reconhecemos esforços, premiamos resultados<br></br>• Encantamos nossos clientes<br></br>• Temos prazer em servir.</span>
                 </div>
             </div>
         </div>

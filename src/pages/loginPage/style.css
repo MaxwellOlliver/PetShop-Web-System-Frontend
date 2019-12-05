@@ -157,6 +157,20 @@ div#newBg{
 	color: black;
 	padding: 0 15rem;
 }
+.content-perfil {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	/* align-items: center; */
+	width: 100%;
+	height: 100%;
+	background: var(--azulMedio);
+	font-size: 16px;
+	border-radius: 4px;
+	text-align: center;
+	color: black;
+	padding: 0 15rem;
+}
 
 .content-new{
 	display: flex;
@@ -237,7 +251,7 @@ div#newBg{
 	font-size: 20px;
 }
 
-.content-login form {
+.content-login form, .content-perfil form {
 	margin-top: 1.5rem;
 	padding: 35px 50px;
 	display: flex;
@@ -263,7 +277,7 @@ div#newBg{
 	border-radius: 20px;
 }
 
-.content-login form input{
+.content-login form input, .content-perfil form input{
 	width: 420px;
 	height: 45px;
 	border-radius: 12px;
@@ -290,7 +304,7 @@ div#newBg{
 	text-align: left;
 }
 
-.content-login form button{
+.content-login form button, .content-perfil form button{
 	width: 420px;
 	height: 45px;
 	border-radius: 12px;
@@ -314,7 +328,7 @@ div#newBg{
 	transition: .3s;
 }
 
-.content-login form button:hover, .content-new form button:hover{
+.content-login form button:hover, .content-new form button:hover, .content-perfil form button:hover{
 	background: var(--azulMedioHover);
 }
 
@@ -325,10 +339,10 @@ div#newBg{
 	background: var(--azulMedio);
 }
 
-.content-login form span, .content-login span, .content-new form span, .content-new span{
+.content-login form span, .content-login span, .content-new form span, .content-new span, .content-perfil form span, .content-perfil span{
 	color: white;
 }
-.content-login span, .content-new span{
+.content-login span, .content-new span, .content-perfil span{
 	margin-top: 10px;
 }
 
@@ -395,6 +409,9 @@ div#sub-btn{
 }
 
 div#sub-btn button{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 200px;
 	transition: .3s;
 }
@@ -441,7 +458,6 @@ button#novo:hover {
 }
 
 .content-new form button#agendar{
-	width: 100%;
 	background-color: var(--cinza);
 }
 .content-new form button#agendar:hover{
@@ -827,7 +843,7 @@ input[type = "checkbox"]{
 	height: 80px;
 }
 
-button#voltar img{
+button#voltar img, .content-perfil button img{
 	height: 18px;
 	width: 18px;
 	margin-right: 10px;
@@ -853,4 +869,48 @@ button#login:hover {
 	font-weight: 500;
   color:#FFFFFF;
   background: rgb(167, 167, 167);
+}
+
+
+.content-perfil div#animalList, .content-perfil div#scheduleList {
+	margin-top: 25px;
+	max-width: 550px; min-width: 450px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #707070;
+	border-radius: 20px;
+	padding: 30px;
+}
+.content-perfil div#ScheduleAndAnimal{
+	padding: 0
+}
+.content-perfil div#ScheduleAndAnimal div#animalList:first-child {
+	margin-bottom: 20px;
+}
+
+.content-perfil div#animalList ul, .content-perfil div#scheduleList ul{
+	background-color: white;
+	width: 100%;
+	max-height: 100px;
+	list-style: none;
+	border-radius: 4px;
+	overflow-y: scroll;
+}
+
+.content-perfil div#animalList ul li, .content-perfil div#scheduleList ul li {
+	display: flex;
+	height: 50px;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid #ccc;
+	padding-left: 10px;
+	font-size: 20px;
+	color: black;
+}
+
+.content-perfil h2{
+	color: white;
+	margin-bottom: 20px;
 }

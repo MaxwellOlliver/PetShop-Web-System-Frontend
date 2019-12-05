@@ -273,3 +273,55 @@ div#servicos div{
 div#servicos div h3, div#servicos div span {
   margin-top: 12px
 }
+div.sobre{
+  background-color: #3C8AD5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+div.servicos {
+  background-color: #ED6B32;
+  width: 100%;
+  display: flex;
+  flex-direction: column
+}
+div.equipe{
+  background-color: #707070;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+div#imgSobre, div#imgEquipe, div#imgServicos {
+  width: 100%;
+  height: 350px;
+}
+
+div#imgSobre {
+  background: url('./assets/sobre.png') no-repeat;
+  background-size: cover;
+}
+
+div#imgServicos{
+  background: url('./assets/servicos.png') no-repeat;
+  background-size: cover;
+}
+
+div#imgEquipe{
+  background: url('./assets/equipe.png') no-repeat;
+  background-size: cover;
+}
+
+div#txtContentSobre, div#txtContentServicos, div#txtContentEquipe {
+  text-align: justify;
+  color: black;
+  font-size: 31px;
+  padding: 50px 200px;
+}
+
+div#txtContentEquipe{
+  color: white !important;
+}
+div#txtContentSobre > h3, div#txtContentServicos > h3, div#txtContentEquipe > h3{
+  text-align: center;
+}

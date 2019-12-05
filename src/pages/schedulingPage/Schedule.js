@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 
 import Logo from '../../assets/logo-horizontal.svg';
-import scheduleLogo from '../../assets/agenda-new.svg'
+import scheduleLogo from '../../assets/agenda-new.svg';
+import back from '../../assets/back_icon.svg';
 
 export default function Schedule({history}){
 
@@ -164,12 +165,16 @@ export default function Schedule({history}){
 							<option value="banho">Banho</option>
 							<option value="tosa">Tosa</option>
 						</select>
-						<button 
-							type="submit" 
-							id="agendar"
-						>
-							agendar
-						</button>
+						<div id="sub-btn" style={{padding: '0'}}>
+							<button 
+								type="submit" 
+								id="agendar"
+								style={{marginRight: '20px'}}
+							>
+								agendar
+							</button>
+							<button id="voltar" onClick={goToHome}><img src={back} alt="Voltar"/>voltar</button>
+						</div>
 					</form>
 					<span><strong>Atenção! Escolha qual Pet irá agendar, escolha a data <br/> e hora e depois o tipo de serviço, e clique em agendar.</strong></span>
 				</div>
