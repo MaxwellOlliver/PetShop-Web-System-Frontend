@@ -29,8 +29,6 @@ export default function Login({ history }){
 			const response_schedule = await api.get("/schedule-list", { headers: {user_id} });
 			const response_user = await api.get("/get-perfil", { headers: {user_id} });
 
-			console.log(response_schedule)
-
 			if(!response_user.data.erro ){
 				setAnimal(response_animal.data);
 				setSchedule(response_schedule.data);
@@ -39,7 +37,7 @@ export default function Login({ history }){
 				setCpf(response_user.data.cpf);
 				setTelefone(response_user.data.telefone);
 			}else{
-
+			
 			}
 
 		}
@@ -146,7 +144,7 @@ export default function Login({ history }){
 									<h2>Meus Agendamentos</h2>
 									<ul>
 										{schedule.message ? <li>{schedule.message}</li>: schedule.map((schedule, index)=>{
-											return <li key={index}>{schedule.animal.nome} - {new Date(schedule.data).toLocaleDateString("pt-BR", {timeZone: "UTC"})} às {schedule.hora} - {schedule.servico}</li>
+											return <li key={index}>{schedule.animal.nome} - {schedule.data} às {schedule.hora} - {schedule.servico}</li>
 										})}
 									</ul>
 								</div>

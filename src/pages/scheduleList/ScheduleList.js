@@ -39,7 +39,6 @@ export default function Agendamento({history}){
   },[]);
 
 	function selectAll(){
-		console.log(agendamento)
 		if(agendamento[0]){
 			if(check.checked === true){
 				for(let c = 0; c < agendamento.length; c++){
@@ -196,7 +195,7 @@ export default function Agendamento({history}){
 								</td>
 								<td>{agendamento.animal.nome}</td>
 								<td>{agendamento.servico}</td>
-								<td>{new Date(agendamento.data).toLocaleDateString("pt-BR", {timeZone: "UTC"})}</td>
+								<td>{agendamento.data}</td>
 								<td>{agendamento.hora}</td>
 							</tr>
 							)
